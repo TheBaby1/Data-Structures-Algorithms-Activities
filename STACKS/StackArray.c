@@ -60,9 +60,7 @@ int peek(StackArrayList S){
 
 void display(StackArrayList S){
 	
-	StackArrayList newStack;
-	
-	initStack(&newStack);
+	StackArrayList newStack = createStack();
 	
 	while (!isEmpty(&S)){
 		push(&newStack, peek(S));
@@ -70,13 +68,12 @@ void display(StackArrayList S){
 	}
 	
 	while (!isEmpty(&newStack)){
-		printf("%d \n", peek(newStack));
+		printf("%4d \n", peek(newStack));
 		pop(&newStack);
 	}
 	
 	printf("\n");
 }
-
 
 void visualize(StackArrayList S){
 	
@@ -86,26 +83,41 @@ void visualize(StackArrayList S){
 		printf("Stack is Empty.\n");
 	}
 	
+	printf("%s %7s %7s\n", "INDEX", "DATA", "TOP");
+	
 	for (i = S.top; i >= 0; i--){
-		printf("%d %d", S.data[i], i);
-		if (S.data[i] != S.top){
-			printf("%4s \n", "<-- top");
+		printf("%3d %8d ", i, S.data[i]);
+		if (S.data[i] == S.data[S.top]){
+			printf("%8s ", "<-- top");
 		} 
+		printf("\n");
 	}
 	
 	printf("\n");
 }
 
+StackArrayList getEven(StackArrayList *S){
+	
+	StackArrayList newStack = createStack();
+    StackArrayList tempStack = createStack();
 
+    while (!isEmpty(S)) {
+        int elem = peek(*S);
+        pop(S);
+        if (elem % 2 == 0) {
+            push(&newStack, elem);
+        } else {
+            push(&tempStack, elem);
+        }
+    }
 
+    while (!isEmpty(&tempStack)) {
+        push(S, peek(tempStack));
+        pop(&tempStack);
+    }
 
-
-
-
-
-
-
-
+    return newStack;
+}
 
 
 
