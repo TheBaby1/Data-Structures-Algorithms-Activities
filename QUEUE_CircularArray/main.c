@@ -1,13 +1,14 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 #include "CircularArray.h"
 
-int main(){
-	
+int main() {
 	
 	CircularQ Q;
+	
 	initializeQueue(&Q);
 	
 	enQueue(&Q, 10);
@@ -15,24 +16,15 @@ int main(){
 	enQueue(&Q, 30);
 	enQueue(&Q, 40);
 	enQueue(&Q, 50);
-	enQueue(&Q, 60);
-	enQueue(&Q, 70);
-	enQueue(&Q, 80);
-	enQueue(&Q, 90);
 	
+	enQueue(&Q, 12);
+	enQueue(&Q, 13);
+	enQueue(&Q, 14);
 	
+	enQueue(&Q, 15);
 	
-	display(Q);
-	
-	visualize(Q);
-	
-	
-	deQueue(&Q);
-	deQueue(&Q);
-	
-	display(Q);
-	
-	visualize(Q);
+	displayQueue(&Q);
+	visualizeQueue(Q);
 	
 	return 0;
 }
